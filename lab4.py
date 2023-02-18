@@ -52,7 +52,7 @@ def generate_source_ip_log(log_file, ip_address):
     regex = rf'(.*SRC={ip_address}.*)' #Grab only the SRC field
     data = filter_log_by_regex(log_file, regex)[1]
     report_df = pd.DataFrame(data)             #Create a csv file to put the IPs in
-    ip_address = re.sub(r'\.', '_', ip_address) #Match any character followed by an underscore (where the IP addresses are in the log)
+    ip_address = re.sub(r'\.', '_', ip_address) #Replace all /. with an underscore
     report_df.to_csv(f'source_ip_{ip_address}.log', index=False, header=False)
     #And create the log
     return
